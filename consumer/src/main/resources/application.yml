@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: springcloud-feign-demo-consumer
+eureka:
+  client:
+    service-url:
+      defaultZone: http://sinfonia.top:20089/eureka/
+server:
+  port: 9090
