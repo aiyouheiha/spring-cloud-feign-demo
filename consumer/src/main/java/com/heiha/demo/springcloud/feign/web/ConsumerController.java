@@ -1,8 +1,10 @@
 package com.heiha.demo.springcloud.feign.web;
 
 import com.heiha.demo.springcloud.feign.api.DemoService;
+import com.heiha.demo.springcloud.feign.service.DemoServProviderService;
 import com.heiha.demo.springcloud.feign.service.ProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,9 @@ public class ConsumerController {
     @Autowired
     private ProviderService providerService;
 
+    @Autowired
+    private DemoServProviderService demoServProviderService;
+
     @GetMapping
     public String get() {
         return providerService.get();
@@ -28,5 +33,15 @@ public class ConsumerController {
     @GetMapping("/{value}")
     public String getValue(@PathVariable String value) {
         return providerService.getValue(value);
+    }
+
+    @GetMapping("/ip")
+    public String demoIp() {
+        return demoServProviderService.demoIp();
+    }
+
+    @GetMapping("/info")
+    public ResponseEntity<String> demoInfo() {
+        return demoServProviderService.demoInfo();
     }
 }
