@@ -84,5 +84,32 @@ public class ConsumerController {
 }
 ```
 
+## 自定义配置
+
+默认配置 `org.springframework.cloud.netflix.feign.FeignClientsConfiguration`
+
+### 重试
+
+默认不进行重试
+
+```
+@Bean
+@ConditionalOnMissingBean
+public Retryer feignRetryer() {
+    return Retryer.NEVER_RETRY;
+}
+```
+
+自定义
+
+```
+@Bean
+public Retryer feignRetryer() {
+    return new Retryer.Default(100, SECONDS.toMillis(1), 3);
+}
+```
+
+
+
 
 

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/v1/demo")
 public interface DemoService {
     @GetMapping
-    String get();
+    String get() throws InterruptedException;
 
     @GetMapping("/{value}")
     String getValue(@PathVariable("value") String value);

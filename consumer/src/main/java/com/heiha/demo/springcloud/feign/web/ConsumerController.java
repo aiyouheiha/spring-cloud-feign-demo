@@ -26,7 +26,7 @@ public class ConsumerController {
     private DemoServProviderService demoServProviderService;
 
     @GetMapping
-    public String get() {
+    public String get() throws InterruptedException {
         return providerService.get();
     }
 

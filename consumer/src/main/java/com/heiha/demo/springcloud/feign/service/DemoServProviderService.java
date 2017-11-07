@@ -1,7 +1,9 @@
 package com.heiha.demo.springcloud.feign.service;
 
-import com.heiha.demo.springcloud.feign.api.DemoServService;
+import com.heiha.demo.springcloud.config.DemoServConfig;
+import feign.RequestLine;
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.http.ResponseEntity;
 
 /**
  * <br>
@@ -9,6 +11,11 @@ import org.springframework.cloud.netflix.feign.FeignClient;
  * <b>Date:</b> 2017/11/2 11:11<br>
  * <b>Author:</b> Asher<br>
  */
-@FeignClient("demoservice")
-public interface DemoServProviderService extends DemoServService {
+@FeignClient(value = "demoservice", configuration = DemoServConfig.class)
+public interface DemoServProviderService {
+    @RequestLine("GET /ip")
+    String demoIp();
+
+    @RequestLine("GET /info")
+    ResponseEntity<String> demoInfo();
 }

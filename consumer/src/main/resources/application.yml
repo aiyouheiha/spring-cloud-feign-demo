@@ -7,3 +7,6 @@ eureka:
       defaultZone: http://sinfonia.top:20089/eureka/
 server:
   port: 9090
+logging:
+  level:
+    com.heiha.demo.springcloud.feign.service.DemoServProviderService: DEBUG
