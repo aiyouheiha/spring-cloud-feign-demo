@@ -1,6 +1,7 @@
 package com.heiha.demo.springcloud.feign.web;
 
 import com.heiha.demo.springcloud.feign.api.DemoService;
+import com.heiha.demo.springcloud.feign.service.AshmanService;
 import com.heiha.demo.springcloud.feign.service.DemoServProviderService;
 import com.heiha.demo.springcloud.feign.service.ProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class ConsumerController {
     @Autowired
     private DemoServProviderService demoServProviderService;
 
+    @Autowired
+    private AshmanService ashmanService;
+
     @GetMapping
     public String get() throws InterruptedException {
         return providerService.get();
@@ -43,5 +47,15 @@ public class ConsumerController {
     @GetMapping("/info")
     public ResponseEntity<String> demoInfo() {
         return demoServProviderService.demoInfo();
+    }
+
+    @GetMapping("/ashman")
+    public ResponseEntity<String> ashmanList() {
+        return ResponseEntity.ok(ashmanService.list());
+    }
+
+    @GetMapping("/ashman/{ashmanId}")
+    public ResponseEntity<String> ashman(@PathVariable String ashmanId) {
+        return ResponseEntity.ok(ashmanService.get(ashmanId));
     }
 }
