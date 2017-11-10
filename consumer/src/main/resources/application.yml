@@ -10,3 +10,6 @@ server:
 logging:
   level:
     com.heiha.demo.springcloud.feign.service.DemoServProviderService: DEBUG
+feign:
+  hystrix:
+    enabled: true

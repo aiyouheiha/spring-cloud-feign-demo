@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * <b>Date:</b> 2017/11/9 10:31<br>
  * <b>Author:</b> Asher<br>
  */
-@FeignClient(name = "ashman", url = "http://sinfonia.top:10084/")
+@FeignClient(name = "ashman", url = "http://sinfonia.top:10084/", fallback = AshmanServiceFallback.class)
 public interface AshmanService {
     @GetMapping("/v1/ashman")
     String list();

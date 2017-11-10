@@ -3,6 +3,7 @@ package com.heiha.demo.springcloud.feign.web;
 import com.heiha.demo.springcloud.feign.api.DemoService;
 import com.heiha.demo.springcloud.feign.service.AshmanService;
 import com.heiha.demo.springcloud.feign.service.DemoServProviderService;
+import com.heiha.demo.springcloud.feign.service.NonExistenceService;
 import com.heiha.demo.springcloud.feign.service.ProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,9 @@ public class ConsumerController {
 
     @Autowired
     private AshmanService ashmanService;
+
+    @Autowired
+    private NonExistenceService nonExistenceService;
 
     @GetMapping
     public String get() throws InterruptedException {
@@ -57,5 +61,10 @@ public class ConsumerController {
     @GetMapping("/ashman/{ashmanId}")
     public ResponseEntity<String> ashman(@PathVariable String ashmanId) {
         return ResponseEntity.ok(ashmanService.get(ashmanId));
+    }
+
+    @GetMapping("/hello")
+    public String hello() {
+        return nonExistenceService.hello();
     }
 }
